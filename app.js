@@ -5,9 +5,12 @@ let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
 const clickSound = new Audio("./assets/ting.mp3");
 const resetSound = new Audio("./assets/gameover.mp3");
+const drawSound = new Audio("./assets/draw");
+const winnerSound = new Audio("./assets/winner")
 
 let turn0 = true;
 let count = 0;
+
 
 let winPossibility = [
     [0, 1, 2],
@@ -44,6 +47,8 @@ boxes.forEach((box) => {
 });
 
 const gameDraw = () => {
+    drawSound.currentTime = 0;
+    drawSound.play();
     msg.innerText = `Game was a Draw.`;
     msgContainer.classList.remove("hide");
     disableBoxes();
@@ -63,6 +68,8 @@ const enableBoxes = () => {
 };
 
 const showWinner = (winner) => {
+    winnerSound.currentTime = 0;
+    winnerSound.play();
     msg.innerText = `Congrutulation, Winner is ${winner}`
     msgContainer.classList.remove('hide');
     disableBoxes();
@@ -87,7 +94,7 @@ const resetGame = () => {
     resetSound.currentTime = 0;
     resetSound.play();
 
-    tuen0 = true;
+    turn0 = true;
     count = 0;
     enableBoxes();
     msgContainer.classList.add('hide');
